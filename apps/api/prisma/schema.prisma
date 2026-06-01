@@ -1,0 +1,363 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Job Candidate Schema
+model Candidate {
+  id              String        @id @default(cuid())
+  email           String        @unique
+  firstName       String
+  lastName        String
+  phone           String?
+  title           String?       // Current job title (e.g., "Senior Software Engineer")
+  summary         String?       @db.Text // Brief professional summary
+  location        String?       // City, State, Country
+  remoteOnly      Boolean       @default(false)
+  willingToRelocate Boolean     @default(false)
+  salaryExpectation Int?        // Annual salary expectation in USD
+  noticePeriod    Int?          // Notice period in days
+  status          CandidateStatus @default(ACTIVE)
+  profileImage    String?       // URL to profile image
+  
+  // Relations
+  experiences     Experience[]
+  education       Education[]
+  skills          CandidateSkill[]
+  applications    JobApplication[]
+  documents       Document[]
+  interviews      Interview[]
+  assessments     AssessmentResult[]
+  notes           CandidateNote[]
+  
+  // Timestamps
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  lastActiveAt    DateTime      @default(now())
+  
+  // Metadata
+  source          String?       // How candidate was found (LinkedIn, Referral, Website, etc.)
+  tags            String[]      // Array of tags for filtering
+  isActive        Boolean       @default(true)
+  
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@map("candidates")
+}
+
+enum CandidateStatus {
+  ACTIVE          // Looking for jobs
+  PASSIVE         // Open to opportunities but not actively looking
+  HIRED           // Placed in a job
+  ON_HOLD         // Not actively pursuing opportunities
+  REJECTED        // Not suitable for current requirements
+  BLACKLISTED     // Not to be considered
+}
+
+model Experience {
+  id          String   @id @default(cuid())
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  
+  title       String   // Job title
+  company     String
+  location    String?
+  isCurrent   Boolean  @default(false)
+  startDate   DateTime
+  endDate     DateTime?
+  description String?  @db.Text
+  achievements String[] // Key achievements in this role
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([candidateId])
+  @@index([startDate])
+  @@map("experiences")
+}
+
+model Education {
+  id          String   @id @default(cuid())
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  
+  institution String
+  degree      String    // e.g., "Bachelor of Science"
+  fieldOfStudy String   // e.g., "Computer Science"
+  startDate   DateTime
+  endDate     DateTime?
+  grade       String?   // GPA or grade
+  isHighest   Boolean   @default(false)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([candidateId])
+  @@map("educations")
+}
+
+model Skill {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  category    String?  // e.g., "Programming Language", "Framework", "Soft Skill"
+  
+  candidates  CandidateSkill[]
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([name])
+  @@map("skills")
+}
+
+model CandidateSkill {
+  id          String   @id @default(cuid())
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  skillId     String
+  skill       Skill    @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  
+  proficiencyLevel SkillProficiency @default(BEGINNER) // Beginner, Intermediate, Advanced, Expert
+  yearsOfExperience Float?          // Years of experience with this skill
+  
+  @@unique([candidateId, skillId])
+  @@map("candidate_skills")
+}
+
+enum SkillProficiency {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+model Job {
+  id              String   @id @default(cuid())
+  title           String
+  department      String?
+  location        String
+  remoteAllowed   Boolean  @default(false)
+  description     String   @db.Text
+  requirements    String[]  // Array of requirements
+  responsibilities String[] // Array of responsibilities
+  salaryMin       Int?
+  salaryMax       Int?
+  experienceMin   Int?      // Minimum years of experience required
+  experienceMax   Int?      // Maximum years of experience required
+  
+  status          JobStatus @default(OPEN)
+  postedBy        String?   // User ID who posted the job
+  postedAt        DateTime  @default(now())
+  closedAt        DateTime?
+  
+  // Relations
+  applications    JobApplication[]
+  requiredSkills  JobSkill[]
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([status])
+  @@index([postedAt])
+  @@map("jobs")
+}
+
+enum JobStatus {
+  OPEN
+  CLOSED
+  ON_HOLD
+  DRAFT
+}
+
+model JobSkill {
+  id          String   @id @default(cuid())
+  jobId       String
+  job         Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  skillId     String
+  skill       Skill    @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  
+  required    Boolean  @default(true)
+  
+  @@unique([jobId, skillId])
+  @@map("job_skills")
+}
+
+model JobApplication {
+  id          String              @id @default(cuid())
+  candidateId String
+  candidate   Candidate           @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  jobId       String
+  job         Job                 @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  
+  status      ApplicationStatus   @default(SUBMITTED)
+  appliedAt   DateTime            @default(now())
+  reviewedAt  DateTime?
+  notes       String?             @db.Text
+  
+  // Relations
+  interviews  Interview[]
+  assessments AssessmentResult[]
+  
+  @@unique([candidateId, jobId]) // A candidate can only apply once per job
+  @@index([jobId])
+  @@index([status])
+  @@index([appliedAt])
+  @@map("job_applications")
+}
+
+enum ApplicationStatus {
+  SUBMITTED
+  REVIEWED
+  SCREENING
+  INTERVIEWING
+  OFFER_EXTENDED
+  OFFER_ACCEPTED
+  OFFER_DECLINED
+  REJECTED
+  WITHDRAWN
+}
+
+model Interview {
+  id          String        @id @default(cuid())
+  applicationId String
+  application JobApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  candidateId String
+  candidate   Candidate     @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  
+  type        InterviewType
+  scheduledAt DateTime
+  duration    Int           // Duration in minutes
+  location    String?       // Physical location or meeting link
+  interviewer String?       // Interviewer name or ID
+  status      InterviewStatus @default(SCHEDULED)
+  feedback    String?       @db.Text
+  rating      Int?          // Rating from 1-5
+  
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  
+  @@index([applicationId])
+  @@index([scheduledAt])
+  @@index([status])
+  @@map("interviews")
+}
+
+enum InterviewType {
+  PHONE_SCREEN
+  TECHNICAL
+  CODING
+  SYSTEM_DESIGN
+  HR
+  MANAGERIAL
+  FINAL
+  TAKE_HOME_ASSIGNMENT
+}
+
+enum InterviewStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+  RESCHEDULED
+  NO_SHOW
+}
+
+model AssessmentResult {
+  id          String        @id @default(cuid())
+  applicationId String
+  application JobApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  candidateId String
+  candidate   Candidate     @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  
+  type        AssessmentType
+  score       Float?
+  maxScore    Float?
+  percentage  Float?
+  passed      Boolean?
+  feedback    String?       @db.Text
+  
+  takenAt     DateTime      @default(now())
+  
+  @@index([applicationId])
+  @@map("assessment_results")
+}
+
+enum AssessmentType {
+  CODING_TEST
+  PSYCHOMETRIC
+  LANGUAGE_TEST
+  TECHNICAL_ASSESSMENT
+  PERSONALITY_TEST
+}
+
+model Document {
+  id          String    @id @default(cuid())
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  
+  type        DocumentType
+  title       String
+  url         String     // S3 or cloud storage URL
+  fileSize    Int?       // Size in bytes
+  mimeType    String?
+  version     Int        @default(1)
+  isVerified  Boolean    @default(false)
+  
+  uploadedAt  DateTime   @default(now())
+  
+  @@index([candidateId])
+  @@index([type])
+  @@map("documents")
+}
+
+enum DocumentType {
+  RESUME
+  COVER_LETTER
+  PORTFOLIO
+  CERTIFICATION
+  TRANSCRIPT
+  ID_PROOF
+  OTHER
+}
+
+model CandidateNote {
+  id          String    @id @default(cuid())
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  
+  note        String    @db.Text
+  createdBy   String    // User ID who created the note
+  isPrivate   Boolean   @default(false) // Private notes only visible to recruiters
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  @@index([candidateId])
+  @@map("candidate_notes")
+}
+
+model Referral {
+  id          String    @id @default(cuid())
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  
+  referrerName  String
+  referrerEmail String
+  referrerPhone String?
+  relationship  String?  // e.g., "Former Colleague", "Friend", "Employee"
+  notes         String?  @db.Text
+  
+  referralDate  DateTime @default(now())
+  bonusPaid     Boolean  @default(false)
+  
+  @@map("referrals")
+}
