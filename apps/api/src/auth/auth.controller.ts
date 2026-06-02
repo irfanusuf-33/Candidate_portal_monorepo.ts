@@ -17,7 +17,7 @@ interface RequestWithUser extends Request {
   };
 }
 
-@Controller('auth')
+@Controller('auth')  // prefix
 export class AuthController {
   constructor(private authService: AuthService) {}
 
