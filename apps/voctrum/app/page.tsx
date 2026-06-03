@@ -248,7 +248,11 @@ import CTASection from "@/components/shared/cta-section"
 
 
 
+
+
+
 export default function Home() {
+
   return (
     <main className="min-h-screen">
       <HeroSection />
