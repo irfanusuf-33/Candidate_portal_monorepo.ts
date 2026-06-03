@@ -38,7 +38,7 @@ export default function RootLayout({
       >
         <Navbar/>
 
-        <TooltipProvider>  <main className="mt-12 space-y-12">{children}</main></TooltipProvider>  
+        <TooltipProvider>  <main className="space-y-12">{children}</main></TooltipProvider>  
         <Toaster richColors position="top-right" /> 
 
         <Footer/>
