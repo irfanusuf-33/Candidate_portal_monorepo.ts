@@ -2,7 +2,7 @@
 import { Instagram,  LinkedinIcon,  X } from "lucide-react"
 import Link from "next/link"
 import { SiFacebook } from "react-icons/si"
-import Logo  from "@/public/Logo.png"
+import Logo  from "@/public/Logo.svg"
 
 export default function Footer() {
   return (
