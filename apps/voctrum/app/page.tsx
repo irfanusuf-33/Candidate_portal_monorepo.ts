@@ -14,7 +14,11 @@ import FeaturesSectionNew from "@/components/home/FeaturesSectionNew"
 
 
 
+
+
+
 export default function Home() {
+
   return (
     <main className="min-h-screen">
       {/* <HeroSection /> */}

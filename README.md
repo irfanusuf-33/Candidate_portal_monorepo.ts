@@ -1,1 +1,1 @@
-// reademe for candidate app
+// read me for mono repo 
