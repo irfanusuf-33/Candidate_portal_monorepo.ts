@@ -3,6 +3,10 @@
 import { Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Autoplay, Pagination } from 'swiper/modules';
 
 const testimonials = [
   {
@@ -29,12 +33,60 @@ const testimonials = [
     role: 'Sales Lead, at Onbeats',
     avatar: 'bg-emerald-100',
   },
+  {
+    title: 'Landed my dream job!',
+    quote:
+      'The AI matching feature is incredible. It suggested positions I never would have found on my own.',
+    name: 'Rahul Sharma',
+    role: 'Software Engineer at Google',
+    avatar: 'bg-purple-100',
+  },
+  {
+    title: 'Professional and efficient',
+    quote:
+      'From application to offer, the process was seamless. The platform really understands what candidates need.',
+    name: 'Priya Patel',
+    role: 'Data Analyst at Amazon',
+    avatar: 'bg-rose-100',
+  },
+  {
+    title: 'Best career decision',
+    quote:
+      'I was stuck in a dead-end job for years. This platform helped me transition to a field I love.',
+    name: 'Vikram Singh',
+    role: 'Product Designer at Microsoft',
+    avatar: 'bg-cyan-100',
+  },
+  {
+    title: 'Quick and responsive',
+    quote:
+      'The recruiters on this platform are amazing. I got responses within hours of applying.',
+    name: 'Anita Desai',
+    role: 'Marketing Lead at Meta',
+    avatar: 'bg-orange-100',
+  },
+  {
+    title: 'Transparency at its best',
+    quote:
+      'Finally a platform that shows you exactly what to expect. No hidden surprises in the job descriptions.',
+    name: 'Karan Mehta',
+    role: 'Senior Dev at Apple',
+    avatar: 'bg-teal-100',
+  },
+  {
+    title: 'Career growth accelerated',
+    quote:
+      'Within 3 months, I landed a senior role. The platform resources helped me prepare perfectly.',
+    name: 'Sneha Gupta',
+    role: 'Tech Lead at Netflix',
+    avatar: 'bg-pink-100',
+  },
 ];
 
 export default function TestimonialsAppSection() {
   return (
     <section className="bg-white px-5 py-12 md:px-10 lg:px-16">
-      <div className="mx-auto max-w-[1220px]">
+      <div className="mx-auto max-w-[1220px] overflow-hidden">
         <div className="text-center">
           <p className="section-kicker justify-center">Success Stories</p>
           <h2 className="mt-4 text-3xl font-black text-slate-800 md:text-4xl">
@@ -42,44 +94,61 @@ export default function TestimonialsAppSection() {
           </h2>
         </div>
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-3">
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          slidesPerView={1}
+          spaceBetween={24}
+          pagination={{ clickable: true }}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            760: {
+              slidesPerView: 2,
+            },
+            1080: {
+              slidesPerView: 3,
+            },
+          }}
+          className="mt-10 !pb-16"
+        >
           {testimonials.map((item, index) => (
-            <motion.article
-              key={item.name}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.45, delay: index * 0.08 }}
-              className="rounded-lg border border-slate-300 bg-white p-6"
-            >
-              <h3 className="max-w-xs text-xl font-semibold leading-7 text-slate-900">
-                {item.title}
-              </h3>
-              <p className="mt-6 text-sm leading-6 text-slate-400">
-                &ldquo;{item.quote}&rdquo;
-              </p>
-              <div className="mt-5 flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <span className={`h-9 w-9 rounded-full ${item.avatar}`} />
-                  <div>
-                    <p className="text-xs font-black text-blue-700">{item.name}</p>
-                    <p className="text-xs text-slate-400">{item.role}</p>
+            <SwiperSlide key={item.name}>
+              <motion.article
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.45,
+                  delay: index * 0.05,
+                }}
+                whileHover={{
+                  y: -5,
+                }}
+                className="h-full rounded-xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300"
+              >
+                <h3 className="max-w-xs text-xl font-semibold leading-7 text-slate-900">
+                  {item.title}
+                </h3>
+                <p className="mt-6 text-sm leading-6 text-slate-400">
+                  &ldquo;{item.quote}&rdquo;
+                </p>
+                <div className="mt-auto flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <span className={`h-9 w-9 rounded-full ${item.avatar}`} />
+                    <div>
+                      <p className="text-xs font-black text-blue-700">{item.name}</p>
+                      <p className="text-xs text-slate-400">{item.role}</p>
+                    </div>
                   </div>
+                  <p className="text-lg tracking-[0.12em] text-amber-400">★★★★★</p>
                 </div>
-                <p className="text-lg tracking-[0.12em] text-amber-400">★★★★★</p>
-              </div>
-            </motion.article>
+              </motion.article>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
 
-        <div className="mt-10 flex justify-center gap-3">
-          {[0, 1, 2].map((dot) => (
-            <span
-              key={dot}
-              className={`h-3 w-3 rounded-full ${dot === 0 ? 'bg-blue-700' : 'bg-slate-300'}`}
-            />
-          ))}
-        </div>
 
         <div className="mt-20 grid items-center gap-10 rounded-lg bg-slate-50 px-7 py-10 md:grid-cols-[1.1fr_0.9fr] md:px-16">
           <div>
