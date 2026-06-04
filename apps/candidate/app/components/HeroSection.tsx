@@ -3,6 +3,7 @@
 import { MapPin, Search, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function HeroSection() {
   return (
@@ -72,9 +73,9 @@ export default function HeroSection() {
             <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-center">
 
               <div>
-                <button className="h-11 w-56 rounded-md border-2 border-blue-700 bg-white font-bold text-blue-700">
+                <Link href="/register" className="inline-flex h-11 w-56 items-center justify-center rounded-md border-2 border-blue-700 bg-white font-bold !text-blue-700 shadow-sm transition hover:bg-blue-700 hover:!text-white hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700">
                   Register
-                </button>
+                </Link>
 
                 <p className="mt-3 text-sm italic text-slate-500">
                   Get started in minutes with simple ease

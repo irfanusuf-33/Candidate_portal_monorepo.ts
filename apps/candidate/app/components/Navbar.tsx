@@ -5,7 +5,11 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const navItems = ['Jobs', 'Companies', 'About Us'];
+const navLinks: { label: string; href: string }[] = [
+  { label: 'Jobs', href: '/jobs' },
+  { label: 'Companies', href: '/companies' },
+  { label: 'About Us', href: '/about' },
+];
 
 export default function Navbar() {
   return (
@@ -28,13 +32,13 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden items-center gap-16 md:flex">
-          {navItems.map((item) => (
+          {navLinks.map(({ label, href }) => (
             <Link
-              key={item}
-              href="#"
+              key={label}
+              href={href}
               className="text-[15px] font-semibold text-slate-700 transition hover:text-blue-700"
             >
-              {item}
+              {label}
             </Link>
           ))}
         </div>
@@ -43,10 +47,13 @@ export default function Navbar() {
           <span className="hidden text-[15px] font-medium text-slate-500 lg:inline">
             Already have an account ?
           </span>
-          <button className="inline-flex h-11 items-center gap-2 rounded-md bg-blue-700 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-800 md:px-6">
-            <LogIn className="h-4 w-4" />
+          <Link
+            href="/login"
+            className="inline-flex h-11 items-center gap-2 rounded-md bg-blue-700 px-4 text-sm font-semibold !text-white shadow-sm transition hover:bg-blue-800 hover:!text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 md:px-6"
+          >
+            <LogIn className="h-4 w-4 text-white" />
             Login
-          </button>
+          </Link>
         </div>
       </nav>
     </motion.header>
