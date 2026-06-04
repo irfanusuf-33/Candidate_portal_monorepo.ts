@@ -13,7 +13,7 @@ import Logo from "@/public/Logo.svg"
 
 const navItems = [
   { name: "Home", href: "/" },
-  { name: "Products", href: "/products" },
+  { name: "Modules", href: "/modules" },
   { name: "Services", href: "/services" },
   { name: "Industries", href: "/industries" },
   { name: "About", href: "/about" },
