@@ -12,6 +12,10 @@ import CTASection from "@/components/shared/cta-section"
 import HeroSectionNew from "@/components/home/HeroSectionNew"
 import FeaturesSectionNew from "@/components/home/FeaturesSectionNew"
 import UnifiedSalesSection from "@/components/home/UnifiedSalesSection"
+import CoreModulesSection from "@/components/home/CoreModulesSection"
+import TrustedBySection from "@/components/home/TrustedBySection"
+import FAQSection from "@/components/home/FAQSection"
+import StartTrialSection from "@/components/home/StartTrialSection"
 
 
 
@@ -29,12 +33,16 @@ export default function Home() {
 
       <FeaturesSectionNew/>
       <UnifiedSalesSection/>
+      <CoreModulesSection/>
+      <TrustedBySection/>
+      <FAQSection/>
+      <StartTrialSection/>
 
-      <AnalyticsSection />
-      <IntegrationsSection />
+      {/* <AnalyticsSection />
+      <IntegrationsSection /> */}
       {/* <PricingSection /> */}
       {/* <TestimonialsSection />s */}
-      <CTASection />
+      {/* <CTASection /> */}
     </main>
   )
 }
