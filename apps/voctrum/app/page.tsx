@@ -11,6 +11,7 @@ import FeaturesSection from "@/components/landing/features-section"
 import CTASection from "@/components/shared/cta-section"
 import HeroSectionNew from "@/components/home/HeroSectionNew"
 import FeaturesSectionNew from "@/components/home/FeaturesSectionNew"
+import UnifiedSalesSection from "@/components/home/UnifiedSalesSection"
 
 
 
@@ -27,6 +28,7 @@ export default function Home() {
       {/* <FeaturesSection /> */}
 
       <FeaturesSectionNew/>
+      <UnifiedSalesSection/>
 
       <AnalyticsSection />
       <IntegrationsSection />
