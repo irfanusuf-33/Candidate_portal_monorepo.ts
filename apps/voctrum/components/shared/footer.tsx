@@ -1,8 +1,5 @@
 import Link from "next/link"
-import Image from "next/image"
 import { FaFacebookF, FaLinkedinIn, FaXTwitter } from "react-icons/fa6"
-
-import Logo from "@/public/Logo.svg"
 
 const footerColumns = [
   {
@@ -54,18 +51,9 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative -mt-px overflow-hidden bg-[#050844] px-5 pb-10 pt-44 text-white md:px-8 lg:pt-48">
+    <footer className="relative -mt-px overflow-hidden bg-[#050844] px-5 pb-10 pt-24 text-white md:px-8 lg:pt-28">
       <div className="absolute inset-0 bg-[url('/BackgroundImg2.jpg')] bg-cover bg-center" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,8,58,0.92),rgba(10,18,72,0.72),rgba(31,73,190,0.2))]" />
-
-      <div
-        className="absolute left-1/2 top-0 z-10 h-[86px] w-[min(92vw,720px)] -translate-x-1/2 bg-white"
-        style={{ clipPath: "polygon(0 0, 100% 0, 74% 100%, 26% 100%)" }}
-      />
-
-      <Link href="/" aria-label="Voctrum home" className="absolute left-1/2 top-0 z-20 -translate-x-1/2">
-        <Image src={Logo} alt="Voctrum" width={214} height={70} className="h-auto w-[180px] sm:w-[214px]" />
-      </Link>
 
       <div className="relative mx-auto max-w-[1005px]">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start">
