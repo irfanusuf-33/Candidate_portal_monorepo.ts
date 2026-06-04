@@ -1,74 +1,152 @@
-// components/landing/footer.tsx
-import { Instagram,  LinkedinIcon,  X } from "lucide-react"
 import Link from "next/link"
-import { SiFacebook } from "react-icons/si"
-import Logo  from "@/public/Logo.svg"
+import Image from "next/image"
+import { FaFacebookF, FaLinkedinIn, FaXTwitter } from "react-icons/fa6"
+
+import Logo from "@/public/Logo.svg"
+
+const footerColumns = [
+  {
+    title: "Product",
+    links: [
+      { label: "Features", href: "#features" },
+      { label: "Sales Pipeline", href: "/products" },
+      { label: "Integrations", href: "#integrations" },
+      { label: "Pricing", href: "/extras/pricing" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Careers", href: "/carrers" },
+      { label: "Contact", href: "/contact" },
+      { label: "Blog", href: "/blog" },
+    ],
+  },
+  {
+    title: "Support",
+    links: [
+      { label: "Help Center", href: "/contact" },
+      { label: "FAQs", href: "#faqs" },
+      { label: "Email Support", href: "mailto:support@voctrum.com" },
+      { label: "Live Chat", href: "/contact" },
+    ],
+  },
+]
+
+const socialLinks = [
+  {
+    label: "X",
+    href: "https://x.com/",
+    icon: FaXTwitter,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/voctrum/posts/?feedView=all",
+    icon: FaLinkedinIn,
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/voctrumglobal/",
+    icon: FaFacebookF,
+  },
+]
 
 export default function Footer() {
   return (
+    <footer className="relative -mt-px overflow-hidden bg-[#050844] px-5 pb-10 pt-44 text-white md:px-8 lg:pt-48">
+      <div className="absolute inset-0 bg-[url('/BackgroundImg2.jpg')] bg-cover bg-center" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,8,58,0.92),rgba(10,18,72,0.72),rgba(31,73,190,0.2))]" />
 
-    <>
-      <footer className="border-t bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div
+        className="absolute left-1/2 top-0 z-10 h-[86px] w-[min(92vw,720px)] -translate-x-1/2 bg-white"
+        style={{ clipPath: "polygon(0 0, 100% 0, 74% 100%, 26% 100%)" }}
+      />
+
+      <Link href="/" aria-label="Voctrum home" className="absolute left-1/2 top-0 z-20 -translate-x-1/2">
+        <Image src={Logo} alt="Voctrum" width={214} height={70} className="h-auto w-[180px] sm:w-[214px]" />
+      </Link>
+
+      <div className="relative mx-auto max-w-[1005px]">
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start">
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-12 h-12 b rounded flex items-center justify-center">
-                 <img src={Logo.src}/>
-              </div>
-              <span className="font-bold">Voctrum</span>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Next-generation ERP solutions for modern businesses
+            <h2 className="max-w-[440px] text-[42px] font-bold leading-[1.08] sm:text-[52px]">
+              Stay Updated with
+              <br />
+              Voctrum ERP
+            </h2>
+            <p className="mt-4 max-w-[370px] text-base leading-snug text-white/78">
+              Get product updates, sales tips, and feature releases delivered to your inbox.
             </p>
+
+            <form className="mt-7 flex max-w-[335px] gap-2">
+              <input
+                aria-label="Email address"
+                type="email"
+                placeholder="Enter your email"
+                className="h-[38px] min-w-0 flex-1 rounded-full bg-white px-4 text-sm text-[#172283] outline-none placeholder:text-[#6c78bd]"
+              />
+              <button
+                type="submit"
+                className="h-[38px] rounded-full bg-[#456cff] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#3158f5]"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
-          
-          <div>
-            <h3 className="font-semibold mb-3">Product</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="#features" className="hover:text-primary">Features</Link></li>
-              <li><Link href="#pricing" className="hover:text-primary">Pricing</Link></li>
-              <li><Link href="#integrations" className="hover:text-primary">Integrations</Link></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold mb-3">Company</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/about" className="hover:text-primary">About</Link></li>
-              <li><Link href="/blog" className="hover:text-primary">Blog</Link></li>
-              <li><Link href="/careers" className="hover:text-primary">Careers</Link></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold mb-3">Legal</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/legal/terms" className="hover:text-primary">Terms</Link></li>
-              <li><Link href="/legal/privacy" className="hover:text-primary">Privacy</Link></li>
-            </ul>
+
+          <div className="grid gap-9 sm:grid-cols-3">
+            {footerColumns.map((column) => (
+              <div key={column.title}>
+                <h3 className="text-lg font-bold text-white">{column.title}</h3>
+                <ul className="mt-5 space-y-3 text-base text-white/72">
+                  {column.links.map((link) => (
+                    <li key={link.label}>
+                      <Link href={link.href} className="transition-colors hover:text-white">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
-        
-        <div className="mt-8 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            © 2026 Voctrum Pvt Ltd. All rights reserved.
-          </p>
-          <div className="flex items-center gap-4">
-            <Link href="https://www.facebook.com/voctrumglobal/" target="_blank" rel="noopener noreferrer">
-              <SiFacebook className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-            </Link>
-            <Link href="https://www.linkedin.com/company/voctrum/posts/?feedView=all" target="_blank" rel="noopener noreferrer">
-              <LinkedinIcon className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-            </Link>
-            <Link href="https://www.instagram.com/voctrumofficial/" target="_blank" rel="noopener noreferrer">
-              <Instagram className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-            </Link>
+
+        <div className="mt-16 border-t border-white/26 pt-8">
+          <div className="flex flex-col items-center justify-between gap-5 text-sm text-white/72 md:flex-row">
+            <div className="flex items-center gap-8">
+              <Link href="/legal/privacy" className="transition-colors hover:text-white">
+                Privacy Policy
+              </Link>
+              <Link href="/legal/terms" className="transition-colors hover:text-white">
+                Terms of Service
+              </Link>
+            </div>
+
+            <p>© 2026 Voctrum</p>
+
+            <div className="flex items-center gap-3">
+              {socialLinks.map((social) => {
+                const Icon = social.icon
+
+                return (
+                  <Link
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="text-white transition-colors hover:text-[#8fb0ff]"
+                  >
+                    <Icon className="h-5 w-5" />
+                  </Link>
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>
     </footer>
-    </>
-  
   )
-}   
+}
