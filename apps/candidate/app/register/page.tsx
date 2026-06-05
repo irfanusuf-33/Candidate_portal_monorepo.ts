@@ -433,7 +433,7 @@ function DoneStep({ selectedSkills, employment, resumeAdded, onBack }: { selecte
       </div>
       <div className="mt-12 flex justify-end gap-5">
         <button type="button" onClick={onBack} className="h-11 w-32 rounded-lg border border-[#2f54eb] bg-white text-sm font-bold text-[#2f54eb] transition hover:bg-[#eef3ff]">Back</button>
-        <button type="button" className="h-11 w-36 rounded-lg bg-[#2f54eb] text-sm font-bold text-white transition hover:bg-[#2447d8]">Explore Jobs</button>
+        <Link href="/dashboard" className="inline-flex h-11 w-36 items-center justify-center rounded-lg bg-[#2f54eb] text-sm font-bold !text-white transition hover:bg-[#2447d8] hover:!text-white">Explore Jobs</Link>
       </div>
     </>
   );
