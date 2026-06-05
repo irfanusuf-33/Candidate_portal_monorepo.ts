@@ -14,6 +14,7 @@ import Logo from "@/public/Logo.svg"
 const navItems = [
   { name: "Home", href: "/" },
   { name: "Modules", href: "/modules" },
+  { name: "Pricing", href: "/pricing" },
   { name: "Services", href: "/services" },
   { name: "Industries", href: "/industries" },
   { name: "About", href: "/about" },
