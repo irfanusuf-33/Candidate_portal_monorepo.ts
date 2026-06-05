@@ -12,14 +12,10 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Logo from "@/public/Logo.svg"
 
 const navItems = [
-  { name: "Home", href: "/" },
+  { name: "Features", href: "/features" },
   { name: "Modules", href: "/modules" },
   { name: "Pricing", href: "/pricing" },
-  { name: "Services", href: "/services" },
-  { name: "Industries", href: "/industries" },
-  { name: "About", href: "/about" },
-  { name: "Careers", href: "/carrers" },
-  { name: "Contact", href: "/contact" },
+  { name: "Resources", href: "/services" },
 ]
 
 export default function Navbar() {
@@ -36,12 +32,12 @@ export default function Navbar() {
 
   return (
     <nav className="fixed inset-x-0 top-0 z-[2147483647] px-4 pt-8">
-      <div className="mx-auto flex h-12 w-full max-w-[1040px] items-center justify-between rounded-full bg-white px-5 shadow-[0_10px_30px_rgba(5,14,76,0.16)] ring-1 ring-white/80">
+      <div className="mx-auto flex h-11 w-full max-w-[860px] items-center justify-between rounded-full bg-white px-5 shadow-[0_16px_40px_rgba(5,14,76,0.10)] ring-1 ring-white/90">
         <Link href="/" className="flex shrink-0 items-center" aria-label="Voctrum home">
-          <Image src={Logo} alt="Voctrum" width={118} height={38} priority className="h-auto w-[118px]" />
+          <Image src={Logo} alt="Voctrum" width={112} height={36} priority className="h-auto w-[112px]" />
         </Link>
 
-          <div className="hidden items-center gap-5 lg:flex">
+          <div className="hidden items-center gap-6 lg:flex">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -65,7 +61,7 @@ export default function Navbar() {
           <Button
             size="sm"
             onClick={handleGetStarted}
-            className="h-9 rounded-full bg-[#2397f4] px-5 text-sm font-semibold text-white shadow-[inset_-8px_-8px_0_rgba(20,40,150,0.18)] hover:bg-[#1789e6]"
+            className="h-9 rounded-full bg-[linear-gradient(90deg,#2aa8f5,#09268f)] px-5 text-sm font-semibold text-white shadow-[inset_-8px_-8px_0_rgba(20,40,150,0.18)] hover:opacity-95"
           >
               Get Started
             </Button>
