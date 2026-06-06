@@ -5,7 +5,7 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Menu } from "lucide-react"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
@@ -21,6 +21,11 @@ const navItems = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
+  const pathname = usePathname()
+
+  if (pathname === "/modules/crm") {
+    return null
+  }
 
   const handleSignIn = () => {
     router.push("https://erp.voctrum.com/login")
