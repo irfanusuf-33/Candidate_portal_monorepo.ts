@@ -23,8 +23,17 @@ const HrmModuleSection = () => {
             Manage employee operations, attendance, leave requests, performance, and HR workflows with complete visibility.
           </p>
 
-          <Link
+          {/* <Link
             href="/contact"
+            className="mt-6 inline-flex h-9 items-center gap-2 rounded-full bg-[#f06d00] pl-5 pr-1.5 text-sm font-medium text-white shadow-[0_14px_30px_rgba(240,109,0,0.18)] transition-transform hover:scale-[1.03]"
+          >
+            Explore Our People
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-[#f06d00]">
+              <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+            </span>
+          </Link> */}
+          <Link
+            href="/modules/hrm"
             className="mt-6 inline-flex h-9 items-center gap-2 rounded-full bg-[#f06d00] pl-5 pr-1.5 text-sm font-medium text-white shadow-[0_14px_30px_rgba(240,109,0,0.18)] transition-transform hover:scale-[1.03]"
           >
             Explore Our People

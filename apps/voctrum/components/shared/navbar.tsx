@@ -12,10 +12,15 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Logo from "@/public/Logo.svg"
 
 const navItems = [
+  { name: "Home", href: "/" },
   { name: "Features", href: "/features" },
   { name: "Modules", href: "/modules" },
   { name: "Pricing", href: "/pricing" },
-  { name: "Resources", href: "/services" },
+  { name: "Services", href: "/services" },
+  { name: "Industries", href: "/industries" },
+  { name: "About", href: "/about" },
+  { name: "Careers", href: "/carrers" },
+  { name: "Contact", href: "/contact" },
 ]
 
 export default function Navbar() {
@@ -37,12 +42,12 @@ export default function Navbar() {
 
   return (
     <nav className="fixed inset-x-0 top-0 z-[2147483647] px-4 pt-8">
-      <div className="mx-auto flex h-11 w-full max-w-[860px] items-center justify-between rounded-full bg-white px-5 shadow-[0_16px_40px_rgba(5,14,76,0.10)] ring-1 ring-white/90">
+      <div className="mx-auto flex h-12 w-full max-w-[1040px] items-center justify-between rounded-full bg-white px-5 shadow-[0_16px_40px_rgba(5,14,76,0.10)] ring-1 ring-white/90">
         <Link href="/" className="flex shrink-0 items-center" aria-label="Voctrum home">
           <Image src={Logo} alt="Voctrum" width={112} height={36} priority className="h-auto w-[112px]" />
         </Link>
 
-          <div className="hidden items-center gap-6 lg:flex">
+          <div className="hidden items-center gap-4 lg:flex">
             {navItems.map((item) => (
               <Link
                 key={item.name}
