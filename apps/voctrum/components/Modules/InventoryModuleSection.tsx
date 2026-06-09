@@ -21,8 +21,17 @@ const InventoryModuleSection = () => {
             Track stock movement, warehouses, inventory levels, and product performance in real time.
           </p>
 
-          <Link
+          {/* <Link
             href="/contact"
+            className="mt-6 inline-flex h-9 items-center gap-2 rounded-full bg-[#6380ff] pl-5 pr-1.5 text-sm font-medium text-white shadow-[0_14px_30px_rgba(99,128,255,0.18)] transition-transform hover:scale-[1.03]"
+          >
+            Explore Assets
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-[#6380ff]">
+              <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+            </span>
+          </Link> */}
+          <Link
+            href="/modules/inventory"
             className="mt-6 inline-flex h-9 items-center gap-2 rounded-full bg-[#6380ff] pl-5 pr-1.5 text-sm font-medium text-white shadow-[0_14px_30px_rgba(99,128,255,0.18)] transition-transform hover:scale-[1.03]"
           >
             Explore Assets
