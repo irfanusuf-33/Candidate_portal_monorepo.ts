@@ -23,8 +23,17 @@ const IamModuleSection = () => {
             Protect systems through role-based permissions, authentication, and secure access management.
           </p>
 
-          <Link
+          {/* <Link
             href="/contact"
+            className="mt-6 inline-flex h-9 items-center gap-2 rounded-full bg-[#f34545] pl-5 pr-1.5 text-sm font-medium text-white shadow-[0_14px_30px_rgba(243,69,69,0.18)] transition-transform hover:scale-[1.03]"
+          >
+            Explore Security
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-[#f34545]">
+              <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+            </span>
+          </Link> */}
+          <Link
+            href="/modules/iam"
             className="mt-6 inline-flex h-9 items-center gap-2 rounded-full bg-[#f34545] pl-5 pr-1.5 text-sm font-medium text-white shadow-[0_14px_30px_rgba(243,69,69,0.18)] transition-transform hover:scale-[1.03]"
           >
             Explore Security
