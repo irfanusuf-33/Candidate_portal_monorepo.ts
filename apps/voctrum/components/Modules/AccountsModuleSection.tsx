@@ -22,7 +22,7 @@ const AccountsModuleSection = () => {
           </p>
 
           <Link
-            href="/contact"
+            href="/modules/accounts"
             className="mt-6 inline-flex h-9 items-center gap-2 rounded-full bg-[#dfa33a] pl-5 pr-1.5 text-sm font-medium text-white shadow-[0_14px_30px_rgba(223,163,58,0.18)] transition-transform hover:scale-[1.03]"
           >
             Explore Treasury
