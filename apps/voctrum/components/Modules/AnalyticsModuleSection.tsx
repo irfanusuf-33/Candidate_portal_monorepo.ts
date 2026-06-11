@@ -24,7 +24,7 @@ const AnalyticsModuleSection = () => {
           </p>
 
           <Link
-            href="/contact"
+            href="/modules/analytics"
             className="mt-6 inline-flex h-9 items-center gap-2 rounded-full bg-[#7c4b82] pl-5 pr-1.5 text-sm font-medium text-white shadow-[0_14px_30px_rgba(124,75,130,0.18)] transition-transform hover:scale-[1.03]"
           >
             Explore Insights
