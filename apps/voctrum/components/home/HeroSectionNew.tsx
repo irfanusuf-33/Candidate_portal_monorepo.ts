@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { TypewriterEffect } from "@/components/ui/typewriter-effect"
 
 export default function HeroSectionNew() {
   const router = useRouter()
@@ -31,7 +32,16 @@ export default function HeroSectionNew() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="max-w-4xl text-5xl font-bold leading-[1.08] text-white md:text-6xl lg:text-7xl"
         >
-          The Smart ERP Built for Growing Businesses
+          The Smart ERP Built for{" "}
+          <span className="whitespace-nowrap">
+            <TypewriterEffect
+              blur
+              words={[
+                { text: "Growing" },
+                { text: "Businesses"},
+              ]}
+            />
+          </span>
         </motion.h1>
 
         <motion.p

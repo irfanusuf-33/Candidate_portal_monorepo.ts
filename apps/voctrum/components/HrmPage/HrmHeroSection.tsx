@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { ArrowRight, CalendarDays } from "lucide-react"
+import { TypewriterEffect } from "@/components/ui/typewriter-effect"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -37,7 +38,7 @@ const HrmHeroSection = () => {
           >
             <span className="text-[#456cff]">Build</span> Stronger Teams
             <br />
-            with Better Visibility
+            <TypewriterEffect blur words={[{ text: "with" }, { text: "Better" }, { text: "Visibility", className: "text-[#456cff]" }]} />
           </motion.h1>
 
           <motion.p

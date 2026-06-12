@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { TypewriterEffect } from "@/components/ui/typewriter-effect"
 
 const userTypes = [
   { label: "Employees", count: 63, pct: "75%", color: "#456cff" },
@@ -34,7 +35,7 @@ export default function IamHeroSection() {
           >
             Secure Access
             <br />
-            Without <span className="text-[#456cff]">Complexity</span>
+            <TypewriterEffect blur words={[{ text: "Without" }, { text: "Complexity", className: "text-[#456cff]" }]} />
           </motion.h1>
 
           <motion.p

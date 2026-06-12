@@ -16,21 +16,17 @@ const navItems = [
   { name: "Features", href: "/features" },
   { name: "Modules", href: "/modules" },
   { name: "Pricing", href: "/pricing" },
-  { name: "Services", href: "/services" },
-  { name: "Industries", href: "/industries" },
-  { name: "About", href: "/about" },
-  { name: "Careers", href: "/carrers" },
-  { name: "Contact", href: "/contact" },
+  // { name: "Services", href: "/services" },
+  // { name: "Industries", href: "/industries" },
+  // { name: "About", href: "/about" },
+  // { name: "Careers", href: "/carrers" },
+  // { name: "Contact", href: "/contact" },
 ]
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
-
-  if (pathname === "/modules/crm") {
-    return null
-  }
 
   const handleSignIn = () => {
     router.push("https://erp.voctrum.com/login")

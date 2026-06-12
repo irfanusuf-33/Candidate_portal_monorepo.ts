@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { TypewriterEffect } from "@/components/ui/typewriter-effect"
 
 const weekDays = ["S", "M", "T", "W", "T", "F", "S"]
 const calendarDates = Array.from({ length: 35 }, (_, index) => index + 1)
@@ -39,7 +40,7 @@ const CalendarHeroSection = () => {
           >
             <span className="text-[#456cff]">Organize</span> Meetings, Events &amp; Team
             <br className="hidden sm:block" />
-            Schedules Effortlessly
+            <TypewriterEffect blur words={[{ text: "Schedules" }, { text: "Effortlessly", className: "text-[#456cff]" }]} />
           </motion.h1>
 
           <motion.p

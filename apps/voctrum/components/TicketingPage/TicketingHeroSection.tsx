@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { TypewriterEffect } from "@/components/ui/typewriter-effect"
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
@@ -42,7 +43,7 @@ export default function TicketingHeroSection() {
           >
             <span className="text-[#456cff]">Resolve</span> Every
             <br />
-            Request with Clarity
+            <TypewriterEffect blur words={[{ text: "Request" }, { text: "with" }, { text: "Clarity" }]} />
           </motion.h1>
 
           <motion.p
