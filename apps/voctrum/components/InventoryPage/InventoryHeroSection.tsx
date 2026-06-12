@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { TypewriterEffect } from "@/components/ui/typewriter-effect"
 
 const topProducts = [
   { name: "Laptop Pro 14", category: "Electronics", stock: 120 },
@@ -56,7 +57,7 @@ export default function InventoryHeroSection() {
           >
             Track Every Asset With
             <br />
-            Complete <span className="text-[#456cff]">Control</span>
+            <TypewriterEffect blur words={[{ text: "Complete" }, { text: "Control", className: "text-[#456cff]" }]} />
           </motion.h1>
 
           <motion.p

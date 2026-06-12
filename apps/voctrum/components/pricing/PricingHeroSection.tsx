@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Check } from "lucide-react"
+import { TypewriterEffect } from "@/components/ui/typewriter-effect"
 
 const plans = [
   {
@@ -69,7 +70,7 @@ export default function PricingSection() {
           <h2 className="text-[38px] font-bold leading-tight text-[#172283] md:text-[56px]">
             <span className="text-[#456cff]">Simple Pricing</span> For Every
             <br />
-            Business Stage
+            <TypewriterEffect blur words={[{ text: "Business" }, { text: "Stage", className: "text-[#456cff]" }]} />
           </h2>
 
           <p className="mt-4 text-base text-[#6c78bd] md:text-lg">

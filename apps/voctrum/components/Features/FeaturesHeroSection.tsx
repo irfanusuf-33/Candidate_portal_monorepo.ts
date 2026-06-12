@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { TypewriterEffect } from "@/components/ui/typewriter-effect"
 
 const FeaturesHeroSection = () => {
   return (
@@ -17,7 +18,7 @@ const FeaturesHeroSection = () => {
           <h1 className="mt-6 max-w-[500px] text-[38px] font-bold leading-[0.96] text-[#172283] md:text-[44px]">
             <span className="text-[#4372ff]">Stop Managing Chaos</span>
             <br />
-            Start Running Smarter
+            <TypewriterEffect blur words={[{ text: "Start" }, { text: "Running" }, { text: "Smarter", className: "text-[#4372ff]" }]} />
           </h1>
 
           <p className="mt-3.5 max-w-[470px] text-[13px] leading-[1.22] text-[#6d7bbd]">

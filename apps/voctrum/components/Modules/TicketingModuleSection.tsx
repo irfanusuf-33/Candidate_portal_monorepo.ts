@@ -23,8 +23,9 @@ const TicketingModuleSection = () => {
             Manage requests, prioritize tickets, monitor SLA performance, and improve response efficiency.
           </p>
 
+          {/* <Link href="/contact" className="mt-6 inline-flex h-9 items-center gap-2 rounded-full bg-[#7648d8] pl-5 pr-1.5 text-sm font-medium text-white shadow-[0_14px_30px_rgba(118,72,216,0.18)] transition-transform hover:scale-[1.03]"> */}
           <Link
-            href="/contact"
+            href="/modules/ticketing"
             className="mt-6 inline-flex h-9 items-center gap-2 rounded-full bg-[#7648d8] pl-5 pr-1.5 text-sm font-medium text-white shadow-[0_14px_30px_rgba(118,72,216,0.18)] transition-transform hover:scale-[1.03]"
           >
             Explore Ticketing

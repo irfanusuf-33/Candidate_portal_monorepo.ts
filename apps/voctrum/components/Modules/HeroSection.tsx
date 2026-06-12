@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { TypewriterEffect } from "@/components/ui/typewriter-effect"
 
 export default function HeroSection() {
   return (
@@ -36,7 +37,7 @@ export default function HeroSection() {
         >
           <span className="text-[#456cff]">Every Business</span> Function
           <br />
-          One Connected System
+          <TypewriterEffect blur words={[{ text: "One" }, { text: "Connected" }, { text: "System", className: "text-[#456cff]" }]} />
         </motion.h1>
 
         <motion.p

@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { TypewriterEffect } from "@/components/ui/typewriter-effect"
 
 const invoiceData = [
   { label: "Paid", value: 514, color: "#22c55e" },
@@ -44,7 +45,7 @@ export default function AccountsHeroSection() {
           >
             Take Control of Every
             <br />
-            Business <span className="text-[#456cff]">Transaction</span>
+            <TypewriterEffect blur words={[{ text: "Business" }, { text: "Transaction", className: "text-[#456cff]" }]} />
           </motion.h1>
 
           <motion.p

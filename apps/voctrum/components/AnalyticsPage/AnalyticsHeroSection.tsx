@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { TypewriterEffect } from "@/components/ui/typewriter-effect"
 
 export default function AnalyticsHeroSection() {
   return (
@@ -25,9 +26,9 @@ export default function AnalyticsHeroSection() {
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.58, delay: 0.16 }}
             className="mt-5 max-w-[700px] text-[36px] font-bold leading-[1.05] text-[#172283] sm:text-[48px] lg:text-[58px]"
           >
-            Turn Data Into
+            Turn Social Data
             <br />
-            Smarter <span className="text-[#456cff]">Decisions</span>
+            <TypewriterEffect blur words={[{ text: "Into Business"} ,{ text: "Decisions", className: "text-[#456cff]" }]} />
           </motion.h1>
 
           <motion.p

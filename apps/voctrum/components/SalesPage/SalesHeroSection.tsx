@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { TypewriterEffect } from "@/components/ui/typewriter-effect"
 
 export default function SalesHeroSection() {
   return (
@@ -27,7 +28,7 @@ export default function SalesHeroSection() {
           >
             Manage Every Sale
             <br />
-            From Lead To <span className="text-[#456cff]">Payment</span>
+            <TypewriterEffect blur words={[{ text: "  From Lead To"}, {text:"Payment", className: "text-[#456cff]" }]} />
           </motion.h1>
 
           <motion.p

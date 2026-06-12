@@ -5,7 +5,7 @@ import { ArrowRight, FileText, Mail, Phone, Plus } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
-import Logo from "@/public/Logo.svg"
+import { TypewriterEffect } from "@/components/ui/typewriter-effect"
 
 const activityItems = [
   {
@@ -55,43 +55,13 @@ const taskItems = [
 const CrmHeroSection = () => {
   return (
     <section className="bg-white px-1.5 py-3 sm:px-2">
-      <div className="relative mx-auto min-h-[762px] max-w-[1582px] overflow-hidden rounded-[28px] border border-[#d6defd] bg-[linear-gradient(132deg,#f7faff_0%,#eef2f8_48%,#8298ec_100%)] px-5 pt-4 shadow-[0_24px_70px_rgba(69,108,255,0.12)] sm:rounded-[30px] sm:px-9">
-        <motion.nav
-          initial={{ opacity: 0, y: -14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
-          className="relative z-20 mx-auto flex h-11 max-w-[820px] items-center justify-between rounded-full bg-white/92 pl-3.5 pr-2 shadow-[0_18px_45px_rgba(80,100,180,0.12)] backdrop-blur-md"
-        >
-          <Link href="/" aria-label="Voctrum home" className="flex shrink-0 items-center">
-            <Image src={Logo} alt="Voctrum" width={116} height={38} priority className="h-auto w-[106px] sm:w-[112px]" />
-          </Link>
-
-          <div className="hidden items-center gap-8 text-[13px] font-medium text-[#071070] md:flex">
-            <Link href="#features">Features</Link>
-            <Link href="#how-it-works">How It Works</Link>
-            <Link href="#testimonials">Testimonials</Link>
-            <Link href="/pricing">Pricing</Link>
-          </div>
-
-          <div className="flex items-center gap-2 text-[13px] font-medium">
-            <Link href="https://erp.voctrum.com/login" className="hidden text-[#071070] sm:inline-flex">
-              Sign In
-            </Link>
-            <Link
-              href="/products/register"
-              className="inline-flex h-9 items-center rounded-full bg-[#1479f6] px-4 text-white shadow-[0_10px_24px_rgba(20,121,246,0.25)] transition-transform hover:scale-[1.03]"
-            >
-              Get Started
-            </Link>
-          </div>
-        </motion.nav>
-
+      <div className="relative mx-auto min-h-[762px] max-w-[1582px] overflow-hidden rounded-[28px] border border-[#d6defd] bg-[linear-gradient(132deg,#f7faff_0%,#eef2f8_48%,#8298ec_100%)] px-5 pt-24 shadow-[0_24px_70px_rgba(69,108,255,0.12)] sm:rounded-[30px] sm:px-9">
         <div className="relative z-10 mx-auto flex max-w-[760px] flex-col items-center text-center">
           <motion.span
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
-            className="mt-10 inline-flex rounded-full bg-[#456cff] px-4 py-1.5 text-[10px] font-medium text-white shadow-[0_12px_28px_rgba(63,108,255,0.24)]"
+            className="inline-flex rounded-full bg-[#456cff] px-4 py-1.5 text-[10px] font-medium text-white shadow-[0_12px_28px_rgba(63,108,255,0.24)]"
           >
             Client Relationship Management
           </motion.span>
@@ -104,7 +74,14 @@ const CrmHeroSection = () => {
           >
             Turn Every Relationship
             <br />
-            Into Business <span className="text-[#456cff]">Growth</span>
+            <TypewriterEffect
+              blur
+              words={[
+                { text: "Into" },
+                { text: "Business" },
+                { text: "Growth", className: "text-[#456cff]" },
+              ]}
+            />
           </motion.h1>
 
           <motion.p
