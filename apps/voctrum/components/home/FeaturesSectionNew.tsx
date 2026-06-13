@@ -2,6 +2,7 @@
 "use client"
 
 import { AppWindow, Heart, LayoutDashboard, LayoutList, TrendingUp, Users } from "lucide-react"
+import { WobbleCard } from "@/components/ui/wobble-card"
 
 const features = [
   {
@@ -78,11 +79,11 @@ export default function FeaturesSectionNew() {
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {features.map((f) => (
-            <div key={f.title} className="flex flex-col gap-4 rounded-3xl bg-white/70 p-6">
+                      <WobbleCard key={f.title} containerClassName="flex flex-col gap-4 rounded-3xl bg-white/70 p-6">
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-200/40">{f.icon}</div>
               <h3 className="text-lg font-bold text-[#0f1e5c]">{f.title}</h3>
               <p className="text-sm leading-relaxed text-gray-500">{f.desc}</p>
-            </div>
+            </WobbleCard>
           ))}
         </div>
       </div>

@@ -1,13 +1,16 @@
 "use client"
 
+import Image from "next/image"
 import { motion } from "framer-motion"
 import type { CSSProperties } from "react"
+import { WobbleCard } from "@/components/ui/wobble-card"
 
 type Testimonial = {
   name: string
   role: string
   quote: string
   initials: string
+  image: string
   avatarClassName: string
   avatarStyle: CSSProperties
 }
@@ -17,6 +20,7 @@ const testimonials: Testimonial[] = [
     name: "Floyd Miles",
     role: "CEO Microsoft",
     initials: "FM",
+    image: "/HomePageImg1.svg",
     quote:
       "Working with Lerero feels like having both a wise mentor and innovative disruptor on your team. Their balanced approach delivers real results.",
     avatarClassName: "h-[162px] w-[162px] rounded-[18px] text-4xl",
@@ -29,6 +33,7 @@ const testimonials: Testimonial[] = [
     name: "Ali Javaid",
     role: "CEO Designing",
     initials: "AJ",
+    image: "/HomePageImg2.svg",
     quote:
       "FlowCRM completely transformed how we manage our sales pipeline. The visual stages make it easy to track deals and identify bottlenecks instantly.",
     avatarClassName: "h-12 w-12 rounded-full text-sm",
@@ -41,6 +46,7 @@ const testimonials: Testimonial[] = [
     name: "Priya Sharma",
     role: "Senior Software Engineer",
     initials: "PS",
+    image: "/HomePageImg3.svg",
     quote:
       "The analytics and reporting tools are exactly what we needed. We're making smarter, data-driven decisions now.",
     avatarClassName: "h-12 w-12 rounded-full text-sm",
@@ -53,6 +59,7 @@ const testimonials: Testimonial[] = [
     name: "Eduardo",
     role: "React JS Developer",
     initials: "ED",
+    image: "/HomePageImg4.svg",
     quote:
       "I was impressed by how quickly we were able to implement this tool. It's made collaboration across teams so much smoother.",
     avatarClassName: "h-12 w-12 rounded-full text-sm",
@@ -65,6 +72,7 @@ const testimonials: Testimonial[] = [
     name: "Flores, Juanita",
     role: "MD Family Practice",
     initials: "FJ",
+    image: "/HomePageImg5.svg",
     quote:
       "This platform has simplified our processes and boosted productivity. It's a must-have for any business looking to grow.",
     avatarClassName: "h-12 w-12 rounded-full text-sm",
@@ -106,12 +114,13 @@ export default function TrustedBySection() {
         </motion.div>
 
         <div className="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-3">
+          <WobbleCard containerClassName="lg:col-span-2">
           <motion.article
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col gap-5 rounded-[28px] border-2 border-[#2a9bff] bg-white p-7 shadow-[0_26px_70px_rgba(51,93,158,0.12)] sm:flex-row sm:items-center lg:col-span-2"
+            className="flex flex-col gap-5 rounded-[28px] border-2 border-[#2a9bff] bg-white p-7 shadow-[0_26px_70px_rgba(51,93,158,0.12)] sm:flex-row sm:items-center"
           >
             <Avatar testimonial={featured} />
             <div className="max-w-[390px]">
@@ -120,6 +129,7 @@ export default function TrustedBySection() {
               <p className="mt-5 text-base leading-snug text-[#6c78bd]">&quot;{featured.quote}&quot;</p>
             </div>
           </motion.article>
+          </WobbleCard>
 
           <TestimonialCard testimonial={topCard} index={1} />
 
@@ -134,12 +144,13 @@ export default function TrustedBySection() {
 
 function TestimonialCard({ testimonial, index }: { testimonial: Testimonial; index: number }) {
   return (
+    <WobbleCard containerClassName="h-full">
     <motion.article
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.35 }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
-      className="min-h-[220px] rounded-[28px] border-2 border-[#b9ccff] bg-transparent p-7 shadow-[0_20px_54px_rgba(51,93,158,0.08)]"
+      className="min-h-[220px] h-full rounded-[28px] border-2 border-[#b9ccff] bg-transparent p-7 shadow-[0_20px_54px_rgba(51,93,158,0.08)]"
     >
       <div className="flex items-center gap-3">
         <Avatar testimonial={testimonial} />
@@ -151,18 +162,18 @@ function TestimonialCard({ testimonial, index }: { testimonial: Testimonial; ind
 
       <p className="mt-7 text-base leading-snug text-[#6c78bd]">&quot;{testimonial.quote}&quot;</p>
     </motion.article>
+    </WobbleCard>
   )
 }
 
 function Avatar({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <span
-      className={`flex shrink-0 items-end justify-center overflow-hidden border-2 border-[#172283] bg-white font-bold text-white shadow-inner ${testimonial.avatarClassName}`}
-      style={testimonial.avatarStyle}
-      aria-label={testimonial.name}
-      role="img"
-    >
-      <span className="mb-3 rounded-full bg-[#172283]/85 px-2 py-1 leading-none">{testimonial.initials}</span>
-    </span>
+    <Image
+      src={testimonial.image}
+      alt={testimonial.name}
+      width={162}
+      height={162}
+      className={`shrink-0 border-2 border-[#172283] object-cover ${testimonial.avatarClassName}`}
+    />
   )
 }

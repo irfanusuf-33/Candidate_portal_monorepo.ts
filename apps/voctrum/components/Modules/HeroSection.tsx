@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { TypewriterEffect } from "@/components/ui/typewriter-effect"
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card"
 
 export default function HeroSection() {
   return (
@@ -76,18 +77,24 @@ export default function HeroSection() {
           transition={{ duration: 0.75, delay: 0.32 }}
           className="relative mt-8 w-full max-w-[860px]"
         >
-          <div className="rounded-t-[46px] border border-white/90 bg-white/50 p-3 shadow-[0_30px_80px_rgba(42,92,185,0.18)] backdrop-blur-sm sm:p-4">
-            <div className="overflow-hidden rounded-t-[36px] bg-white shadow-[inset_0_0_0_1px_rgba(60,92,180,0.08)]">
-              <Image
-                src="/ModulesImage.jpg"
-                alt="Voctrum ERP modules dashboard"
-                width={4167}
-                height={1948}
-                priority
-                className="w-full object-cover object-top"
-              />
-            </div>
-          </div>
+          <CardContainer containerClassName="w-full !py-0" className="w-full">
+            <CardBody className="w-full h-auto">
+              <CardItem translateZ={50} className="w-full">
+                <div className="rounded-t-[46px] border border-white/90 bg-white/50 p-3 shadow-[0_30px_80px_rgba(42,92,185,0.18)] backdrop-blur-sm sm:p-4">
+                  <div className="overflow-hidden rounded-t-[36px] bg-white shadow-[inset_0_0_0_1px_rgba(60,92,180,0.08)]">
+                    <Image
+                      src="/ModulesImage.jpg"
+                      alt="Voctrum ERP modules dashboard"
+                      width={4167}
+                      height={1948}
+                      priority
+                      className="w-full object-cover object-top"
+                    />
+                  </div>
+                </div>
+              </CardItem>
+            </CardBody>
+          </CardContainer>
         </motion.div>
       </div>
     </section>
