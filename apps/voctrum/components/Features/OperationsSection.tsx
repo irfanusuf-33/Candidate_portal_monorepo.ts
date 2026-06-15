@@ -1,4 +1,7 @@
+"use client"
+
 import Image from "next/image"
+import { WobbleCard } from "@/components/ui/wobble-card"
 
 const cards = [
   {
@@ -61,9 +64,10 @@ export default function OperationsSection() {
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {cards.map((card) => (
+            <WobbleCard containerClassName="relative min-h-[194px] overflow-hidden rounded-[24px] shadow-[0_22px_46px_rgba(20,74,185,0.16)]">
             <article
               key={card.title}
-              className="relative min-h-[194px] overflow-hidden rounded-[24px] p-6 text-white shadow-[0_22px_46px_rgba(20,74,185,0.16)]"
+              className="relative h-full min-h-[194px] overflow-hidden rounded-[24px] p-6 text-white"
             >
               <Image
                 src={card.background}
@@ -93,6 +97,7 @@ export default function OperationsSection() {
                 </p>
               </div>
             </article>
+            </WobbleCard>
           ))}
         </div>
       </div>

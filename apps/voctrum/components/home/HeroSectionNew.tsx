@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { TypewriterEffect } from "@/components/ui/typewriter-effect"
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card"
 
 export default function HeroSectionNew() {
   const router = useRouter()
@@ -103,23 +104,29 @@ export default function HeroSectionNew() {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="relative z-[60] mb-[140px] w-full max-w-[575px] shrink-0"
-        >
-          <div className="rounded-[40px] border-[8px] border-[#C7D4FF] bg-[#C7D4FF] shadow-[0_28px_70px_rgba(4,13,75,0.28)]">
-            <Image
-              src="/Image Frame.jpg"
-              alt="Dashboard"
-              width={1920}
-              height={1180}
-              priority
-              className="w-full rounded-[30px]"
-            />
-          </div>
-        </motion.div>
+        <CardContainer containerClassName="w-full max-w-[575px] !py-0" className="w-full">
+          <CardBody className="w-full h-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="relative z-[60] mb-[140px] w-full max-w-[575px] shrink-0"
+            >
+              <CardItem translateZ={50} className="w-full">
+                <div className="rounded-[40px] border-[8px] border-[#C7D4FF] bg-[#C7D4FF] shadow-[0_28px_70px_rgba(4,13,75,0.28)]">
+                  <Image
+                    src="/Image Frame.jpg"
+                    alt="Dashboard"
+                    width={1920}
+                    height={1180}
+                    priority
+                    className="w-full rounded-[30px]"
+                  />
+                </div>
+              </CardItem>
+            </motion.div>
+          </CardBody>
+        </CardContainer>
 
         <motion.div
           initial={{ opacity: 0, x: 40, y: 40 }}
